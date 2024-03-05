@@ -22,6 +22,15 @@ export default class ProductController {
     if (!product) res.status(404).send(`Product with id ${id} not found`);
     else res.status(200).send(product);
   }
-  filterProducts(req, res) {}
+  filterProducts(req, res) {
+    console.log(req.query);
+    const result = ProductModel.filter(
+      req.query.minPrice,
+      req.query.maxPrice,
+      req.query.category
+    );
+    if (!result) res.status(404).send(`No Produts available`);
+    else res.status(200).send(result);
+  }
   rateProduct(req, res) {}
 }
