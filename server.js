@@ -1,5 +1,6 @@
 // Import all the libraries here
 import express from "express";
+import bodyParser from "body-parser";
 //------------------------------------------------------------------------------
 //import all the costom libraries
 import ProductRouter from "./src/features/product/product.routers.js";
@@ -10,6 +11,7 @@ const port = 8080;
 //------------------------------------------------------------------------------
 
 //Redirect API paths
+server.use(bodyParser.json());
 server.use("/api/products", ProductRouter);
 //------------------------------------------------------------------------------
 
