@@ -23,7 +23,6 @@ export default class ProductController {
     else res.status(200).send(product);
   }
   filterProducts(req, res) {
-    console.log(req.query);
     const result = ProductModel.filter(
       req.query.minPrice,
       req.query.maxPrice,
@@ -32,5 +31,13 @@ export default class ProductController {
     if (!result) res.status(404).send(`No Produts available`);
     else res.status(200).send(result);
   }
-  rateProduct(req, res) {}
+  RateProduct(req, res) {
+    const error = ProductModel.rateProduct(
+      req.body.userEmail,
+      req.body.productID,
+      req.body.rating
+    );
+    if (error) res.status(500).send({ error });
+    else res.status(200).send("Thank you for rating!");
+  }
 }
