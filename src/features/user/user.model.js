@@ -11,6 +11,7 @@ export default class UserModel {
   }
   static signin(email, password) {
     const result = Users.find((u) => u.email == email);
+    if (!result) return false;
     if (result.password === password) return result;
     else return false;
   }
