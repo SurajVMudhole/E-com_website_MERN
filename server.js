@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 //import all the costom libraries
 import ProductRouter from "./src/features/product/product.routers.js";
 import userRoutes from "./src/features/user/user.routes.js";
+import CartRoutes from "./src/features/cartitems/cartitems.routes.js";
 import basicAuthorizer from "./src/middlewares/basicAuth.middleware.js";
 //------------------------------------------------------------------------------
 // create consts
@@ -16,6 +17,7 @@ const port = 8080;
 server.use(bodyParser.json());
 server.use("/api/products", basicAuthorizer, ProductRouter);
 server.use("/api/Users", userRoutes);
+server.use("/api/carts", basicAuthorizer, CartRoutes);
 //------------------------------------------------------------------------------
 
 // Router paths defined here
