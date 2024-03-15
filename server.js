@@ -21,6 +21,9 @@ server.use(bodyParser.json());
 server.use("/api/products", basicAuthorizer, ProductRouter);
 server.use("/api/Users", userRoutes);
 server.use("/api/carts", basicAuthorizer, CartRoutes);
+server.use((req, res) => {
+  res.status(404).send("Oops!! this is not valid url");
+});
 //------------------------------------------------------------------------------
 
 // Router paths defined here
