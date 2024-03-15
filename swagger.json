@@ -1,0 +1,17 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "description": "A simple API for E_commerce Website",
+    "title": "Ecommerce Website"
+  },
+  "host": "http://localhost:8080",
+  "paths": {
+    "api/user/signup": {
+      "post": {
+        "description": "api to user to sign up",
+        "summary": "user login"
+      }
+    }
+  }
+}

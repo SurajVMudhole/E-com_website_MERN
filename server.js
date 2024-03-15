@@ -1,12 +1,15 @@
 // Import all the libraries here
 import express from "express";
 import bodyParser from "body-parser";
+import swagger from "swagger-ui-express";
 //------------------------------------------------------------------------------
 //import all the costom libraries
 import ProductRouter from "./src/features/product/product.routers.js";
 import userRoutes from "./src/features/user/user.routes.js";
 import CartRoutes from "./src/features/cartitems/cartitems.routes.js";
 import basicAuthorizer from "./src/middlewares/basicAuth.middleware.js";
+// import apiDoc from "./swagger.json"
+// assert type: 'json';
 //------------------------------------------------------------------------------
 // create consts
 const server = express();
