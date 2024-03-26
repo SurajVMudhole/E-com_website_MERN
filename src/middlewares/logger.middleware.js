@@ -22,16 +22,16 @@
 
 import winston from "winston";
 const logger = winston.createLogger({
-    level: "info",
-    format: winston.format.json(),
-    transports: [new winston.transports.File({ filename: "log.txt" })],
+  level: "info",
+  format: winston.format.json(),
+  transports: [new winston.transports.File({ filename: "data.log" })],
 });
-const loggerMiddleware = async(req, res, next) => {
-    if (!req.url.includes("signin")) {
-        const data = `${req.url}-${JSON.stringify(req.body)}`;
-        logger.info(data);
-    }
-    next();
+const loggerMiddleware = async (req, res, next) => {
+  if (!req.url.includes("signin")) {
+    const data = `${req.url}-${JSON.stringify(req.body)}`;
+    logger.info(data);
+  }
+  next();
 };
 
 export default loggerMiddleware;
