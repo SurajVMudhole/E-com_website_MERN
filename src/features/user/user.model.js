@@ -13,9 +13,9 @@ export default class UserModel {
       const db = getDB();
       const collection = db.collection("users");
       let result = await collection.insertOne(newUser);
-      if (result) return result._id;
+      if (result) return result;
     } catch (err) {
-      console.log("Something went wrong", err);
+      throw new ApplicationError("Failed to insert user", 500);
     }
   }
   static signin(email, password) {
