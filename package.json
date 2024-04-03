@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/SurajVMudhole/E-com_website_MERN#readme",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "express": "^4.18.3",
     "jsonwebtoken": "^9.0.2",

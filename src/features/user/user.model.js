@@ -1,5 +1,6 @@
 import { getDB } from "../../config/mongodb.js";
 import { ApplicationError } from "../../ErrorHandler/ApplicationError.js";
+import bcrypt from "bcrypt";
 export default class UserModel {
   constructor(name, email, password, type) {
     this.name = name;
@@ -8,7 +9,8 @@ export default class UserModel {
     this.type = type;
   }
   static async signup(name, email, password, type) {
-    let newUser = new UserModel(name, email, password, type);
+    const hashedPassword = await bcrypt.hash(password, 12);
+    let newUser = new UserModel(name, email, hashedPassword, type);
     try {
       const db = getDB();
       const collection = db.collection("users");
