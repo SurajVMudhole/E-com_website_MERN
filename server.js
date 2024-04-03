@@ -2,6 +2,8 @@
 import express from "express";
 import bodyParser from "body-parser";
 import swagger from "swagger-ui-express";
+import dotenv from "dotenv";
+dotenv.config();
 //------------------------------------------------------------------------------
 //import all the costom libraries
 import ProductRouter from "./src/features/product/product.routers.js";
@@ -15,7 +17,8 @@ import { ConnectTOMongoDb } from "./src/config/mongodb.js";
 //------------------------------------------------------------------------------
 // create consts
 const server = express();
-const port = 8080;
+const port = process.env.PORT;
+
 //------------------------------------------------------------------------------
 
 //Redirect API paths
