@@ -1,23 +1,23 @@
 import UserModel from "../user/user.model.js";
 export default class ProductModel {
-  constructor(id, name, desc, imageUrl, category, price, sizes) {
-    this.id = id;
+  constructor(name, desc, imageUrl, category, price, sizes, id) {
     this.name = name;
     this.desc = desc;
     this.imageUrl = imageUrl;
     this.category = category;
     this.price = price;
     this.sizes = sizes;
+    this._id = id;
   }
 
   static getAll() {
     return Products;
   }
-  static add(productObj) {
-    productObj.id = Products.length + 1;
-    Products.push(productObj);
-    return Products;
-  }
+  // static add(productObj) {
+  //   productObj.id = Products.length + 1;
+  //   Products.push(productObj);
+  //   return Products;
+  // }
   static get(id) {
     const product = Products.find((i) => i.id == id);
     return product;

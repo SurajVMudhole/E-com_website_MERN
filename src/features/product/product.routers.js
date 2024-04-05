@@ -6,12 +6,12 @@ const productController = new ProductController();
 const ProductRouter = express.Router();
 //Handle routes
 ProductRouter.get("/", productController.getAllProducts);
-ProductRouter.post(
-  "/",
-  upload.single("imageUrl"),
-  productController.addProduct
-);
+ProductRouter.post("/", upload.single("imageUrl"), (req, res) => {
+  productController.addProduct(req, res);
+});
 ProductRouter.get("/filter", productController.filterProducts);
-ProductRouter.get("/:id", productController.getOneProduct);
+ProductRouter.get("/:id", (req, res) => {
+  productController.getOneProduct(req, res);
+});
 ProductRouter.post("/rate", productController.RateProduct);
 export default ProductRouter;

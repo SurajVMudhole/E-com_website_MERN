@@ -1,9 +1,10 @@
+import dotenv from "dotenv";
+dotenv.config();
 // Import all the libraries here
 import express from "express";
 import bodyParser from "body-parser";
 import swagger from "swagger-ui-express";
-import dotenv from "dotenv";
-dotenv.config();
+
 //------------------------------------------------------------------------------
 //import all the costom libraries
 import ProductRouter from "./src/features/product/product.routers.js";

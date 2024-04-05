@@ -1,26 +1,45 @@
 import ProductModel from "./product.model.js";
+import ProductRepository from "./product.repository.js";
 
 export default class ProductController {
+  constructor() {
+    this.productRepository = new ProductRepository();
+  }
+
   getAllProducts(req, res) {
-    var products = ProductModel.getAll();
-    res.status(200).send(products);
+    try {
+      const products = this.productRepository.getAll();
+      res.status(200).send(products);
+    } catch (err) {
+      throw new ApplicationError(`Error adding\n${err}`, 500);
+    }
   }
   addProduct(req, res) {
-    const { name, price, sizes } = req.body;
-    const newProduct = {
-      name,
-      price: parseFloat(price),
-      sizes: sizes.split(","),
-      imageUrl: req.file.filename,
-    };
-    var rs = ProductModel.add(newProduct);
-    res.status(201).send(newProduct);
+    try {
+      const { name, price, sizes, desc, category } = req.body;
+      const newProduct = new ProductModel(
+        name,
+        desc,
+        req.file.filename,
+        category,
+        parseFloat(price),
+        sizes.split(",")
+      );
+      const result = this.productRepository.add(newProduct);
+      res.status(201).send(newProduct);
+    } catch (err) {
+      throw new ApplicationError(`Error adding\n${err}`, 500);
+    }
   }
   getOneProduct(req, res) {
-    const id = req.params.id;
-    const product = ProductModel.get(id);
-    if (!product) res.status(404).send(`Product with id ${id} not found`);
-    else res.status(200).send(product);
+    try {
+      const id = req.params.id;
+      const product = this.productRepository.get(id);
+      if (!product) res.status(404).send(`Product with id ${id} not found`);
+      else res.status(200).send(product);
+    } catch (err) {
+      throw new ApplicationError(`Error adding\n${err}`, 500);
+    }
   }
   filterProducts(req, res) {
     const result = ProductModel.filter(
